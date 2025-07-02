@@ -21,12 +21,12 @@ class Command(BaseCommand):
             if amount <= 0:
                 raise CommandError("Amount must be positive.")
         except InvalidOperation:
-            raise CommandError(f"Invalid decimal amount: {amount_str}")
+            raise CommandError(f"Invalid decimal amount: {amount_str}") from InvalidOperation
 
         try:
             log_spend(campaign_id, amount)
         except Exception as e:
-            raise CommandError(f"Error logging spend: {e}")
+            raise CommandError(f"Error logging spend: {e}") from e
 
         self.stdout.write(
             self.style.SUCCESS(

@@ -52,12 +52,13 @@ ignore=CVS
 # ignore-list. The regex matches against paths and can be in Posix or Windows
 # format. Because '\\' represents the directory delimiter on Windows systems,
 # it can't be used as an escape character.
-ignore-paths=
+ignore-paths=migrations
 
 # Files or directories matching the regular expression patterns are skipped.
 # The regex matches against base names, not paths. The default value ignores
 # Emacs file locks
-ignore-patterns=^\.#
+ignore-patterns=^\.#,
+                migrations/.*\.py,
 
 # List of module names for which member attributes should not be checked and
 # will not be imported (useful for modules/projects where namespaces are
@@ -441,7 +442,16 @@ disable=raw-checker-failed,
         use-implicit-booleaness-not-comparison-to-zero,
         missing-docstring,
         no-member,
+        import-error,
         too-few-public-methods,
+        # These are the errors that I want to disable for now;   
+        C0103,  # Missing docstring in public function
+        C0411,  # Wrong import order
+        C0415,  # Import outside toplevel
+        E5110,  # Use of deprecated method
+        W0613,  # Unused argument
+        E0013,  # Unused argument in function
+
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

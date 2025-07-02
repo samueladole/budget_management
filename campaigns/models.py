@@ -1,5 +1,6 @@
-from django.db import models
 from decimal import Decimal
+
+from django.db import models
 
 
 class Brand(models.Model):
@@ -8,7 +9,7 @@ class Brand(models.Model):
     monthly_budget = models.DecimalField(max_digits=12, decimal_places=2)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name}"
 
 
 class Campaign(models.Model):
@@ -32,7 +33,8 @@ class SpendLog(models.Model):
     amount = models.DecimalField(max_digits=12, decimal_places=2)
 
     def __str__(self) -> str:
-        return f"{self.campaign.name} - {self.amount} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+        timestamp = self.timestamp.strftime('%Y-%m-%d %H:%M:%S')
+        return f"{self.campaign.name} - {self.amount} at {timestamp}"
 
 
 class DaypartingSchedule(models.Model):
