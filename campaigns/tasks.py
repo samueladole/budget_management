@@ -11,8 +11,10 @@ from .services import (
 
 F = TypeVar("F", bound=Callable[..., object])
 
+
 def shared_task(func: F) -> F:
     return celery_shared_task(func)  # type: ignore
+
 
 @shared_task
 def enforce_campaign_status() -> None:

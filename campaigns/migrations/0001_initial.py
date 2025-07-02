@@ -9,46 +9,108 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Brand',
+            name="Brand",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('daily_budget', models.DecimalField(decimal_places=2, max_digits=12)),
-                ('monthly_budget', models.DecimalField(decimal_places=2, max_digits=12)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("daily_budget", models.DecimalField(decimal_places=2, max_digits=12)),
+                (
+                    "monthly_budget",
+                    models.DecimalField(decimal_places=2, max_digits=12),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Campaign',
+            name="Campaign",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('is_active', models.BooleanField(default=True)),
-                ('current_daily_spend', models.DecimalField(decimal_places=2, default=Decimal('0.00'), max_digits=12)),
-                ('current_monthly_spend', models.DecimalField(decimal_places=2, default=Decimal('0.00'), max_digits=12)),
-                ('brand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='campaigns.brand')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("is_active", models.BooleanField(default=True)),
+                (
+                    "current_daily_spend",
+                    models.DecimalField(
+                        decimal_places=2, default=Decimal("0.00"), max_digits=12
+                    ),
+                ),
+                (
+                    "current_monthly_spend",
+                    models.DecimalField(
+                        decimal_places=2, default=Decimal("0.00"), max_digits=12
+                    ),
+                ),
+                (
+                    "brand",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="campaigns.brand",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='DaypartingSchedule',
+            name="DaypartingSchedule",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_hour', models.PositiveSmallIntegerField()),
-                ('end_hour', models.PositiveSmallIntegerField()),
-                ('campaign', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='campaigns.campaign')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("start_hour", models.PositiveSmallIntegerField()),
+                ("end_hour", models.PositiveSmallIntegerField()),
+                (
+                    "campaign",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="campaigns.campaign",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='SpendLog',
+            name="SpendLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=12)),
-                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='campaigns.campaign')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("timestamp", models.DateTimeField(auto_now_add=True)),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=12)),
+                (
+                    "campaign",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="campaigns.campaign",
+                    ),
+                ),
             ],
         ),
     ]
